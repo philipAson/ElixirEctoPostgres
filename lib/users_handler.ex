@@ -85,6 +85,7 @@ defmodule Users.User do
       where: user.date_of_birth >= ^to_date and user.date_of_birth <= ^from_date
     )
   end
+
   defp apply_age_filter(query, _), do: query
 
   defp apply_status_filter(query, %{is_active: status}) when is_boolean(status) do
@@ -92,6 +93,7 @@ defmodule Users.User do
       where: user.is_active == ^status
     )
   end
+
   defp apply_status_filter(query, _), do: query
 
   defp apply_email_filter(query, %{email: partition}) do
@@ -99,6 +101,7 @@ defmodule Users.User do
       where: ilike(user.email, ^"%#{partition}%")
     )
   end
+
   defp apply_email_filter(query, _), do: query
 
   defp apply_name_filter(query, %{name: partition}) do
@@ -106,6 +109,7 @@ defmodule Users.User do
       where: ilike(user.name, ^"%#{partition}%")
     )
   end
+
   defp apply_name_filter(query, _), do: query
 
   defp apply_sort(query, sorter) do
@@ -116,7 +120,8 @@ defmodule Users.User do
       _ -> query
     end
   end
-  defp apply_sort(query, _), do: query
+
+  # defp apply_sort(query, _), do: query
 
   defp sort_users_by_age(query) do
     from(user in query,
@@ -126,7 +131,8 @@ defmodule Users.User do
 
   defp sort_users_by_name(query) do
     from(user in query,
-      order_by: [asc: user.name])
+      order_by: [asc: user.name]
+    )
   end
 
   defp sort_by_join_date(users) do
@@ -140,6 +146,7 @@ defmodule Users.User do
       limit: ^limit
     )
   end
+
   defp apply_limit(query, _), do: query
 
   defp get_users_and_apply_age(enumarable) do

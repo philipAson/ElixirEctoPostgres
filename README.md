@@ -2,6 +2,8 @@
 
 **TODO: Add description**
 
+lägg till säkerhet för att kolla så att det är ett unik id för en user i users samt users2. alltså så att användarID't är unikt över båda tabellerna 
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
